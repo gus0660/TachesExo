@@ -7,7 +7,8 @@ function créerBalise(element) {
   const list = créerBalise("#tasksList");
   const inp = créerBalise("#newTask");
 
-  loadLi();
+  const express = require('express')
+  const app = express()
 
 addTask.addEventListener('click', () => {
     let content = inp.value; 
@@ -46,4 +47,4 @@ addTask.addEventListener('click', () => {
         list.appendChild(liEl);
     })}
  }
- 
+ loadLi();
