@@ -3,9 +3,9 @@ function créerBalise(element) {
     return document.querySelector(element);
   };
   //creation des constantes avec la fonction c-dessus : 
-  const but = créerBalise("#newTask");
-  const list = créerBalise("#addTask");
-  const inp = créerBalise("#tasksList");
+  const but = créerBalise("#addTask");
+  const list = créerBalise("#tasksList");
+  const inp = créerBalise("#newTask");
 
 
 addTask.addEventListener('click', () => {
@@ -27,11 +27,13 @@ function saveLi(){
     console.log(JSON.stringify(textsList));
 }
  function loadLi(){
+    if (JSON.parse(localStorage.getItem('list')) != null) {
     let obj = JSON.parse(localStorage.getItem('list'));
     obj.forEach(element => {
         let liEl = document.createElement('li');
         liEl.textContent = element;
         list.appendChild(liEl);
-    })
+    })}
  }
  loadLi();
+ 
