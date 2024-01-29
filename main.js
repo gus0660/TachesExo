@@ -7,25 +7,36 @@ function créerBalise(element) {
   const list = créerBalise("#tasksList");
   const inp = créerBalise("#newTask");
 
+  loadLi();
 
 addTask.addEventListener('click', () => {
     let content = inp.value; 
     let liEl = document.createElement('li');
     liEl.textContent = content;
     list.appendChild(liEl);
-    saveLi();
-})
 
-function saveLi(){
+    let supButton = document.createElement("button");
+    supButton.textContent = "suprimer";
+    supButton.className = "supBtn";
+    liEl.appendChild(supButton);
+    supButton.addEventListener("click", () => {
+        liEl.remove("liEl");
+    })
+
     const textsList = [];
     const lists = document.querySelectorAll('li');
     lists.forEach((tache) => {
         let text = tache.textContent;
         textsList.push(text);
     })
+
     localStorage.setItem('list', JSON.stringify(textsList));
     console.log(JSON.stringify(textsList));
-}
+})
+
+
+    
+
  function loadLi(){
     if (JSON.parse(localStorage.getItem('list')) != null) {
     let obj = JSON.parse(localStorage.getItem('list'));
@@ -35,5 +46,4 @@ function saveLi(){
         list.appendChild(liEl);
     })}
  }
- loadLi();
  
